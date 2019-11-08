@@ -1,6 +1,6 @@
-# my_vue
+# zZZ-Vue
 
-> My First Vue.js project
+> Vue.js project
 
 ## Build Setup
 
