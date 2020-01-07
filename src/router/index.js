@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/home',
       name: 'Home',
-      component: Home,
+      component: ()=>Home,
       redirect: '/index',
       child: [
         {
@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: ()=>import('@/components/Login'),
       meta: {
         requireAuth: true
       }

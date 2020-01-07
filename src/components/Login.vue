@@ -1,6 +1,6 @@
 <template>
     <body id="poster">
-    <el-form class="login-container" label-position="left"
+      <el-form class="login-container" label-position="left"
              label-width="0px">
         <h3 class="login_title">系统登录</h3>
         <el-form-item>
@@ -12,39 +12,50 @@
                       auto-complete="off" placeholder="密码"></el-input>
         </el-form-item>
         <el-form-item style="width: 100%">
-            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" @click="login">登录
             </el-button>
         </el-form-item>
-    </el-form>
+      </el-form>
     </body>
 </template>
 
 <script>
+  import url from '@/rotxx'
   export default {
-    name: 'Login',
     data () {
       return {
         loginForm: {
           username: 'admin',
           password: '123456'
         },
-        responseResult: []
+        response: {}
       }
     },
     methods: {
       login () {
-        this.$axios
-          .post('/login', {
+        console.log(url)
+        this.$axios({
+          method: 'post',
+          url: url+'/login',
+          params: {
             username: this.loginForm.username,
             password: this.loginForm.password
-          })
-          .then(successResponse => {
-            if (successResponse.data === true) {
-              this.$router.replace({path: '/index'})
+          }
+        }).then(res => {
+
+            this.$message({
+              type: 'success',
+              message: res.data.msg
+            })
+
+            this.response=res
+            if (res.data.code === 1) {
+              this.$router.push({path: '/index'})
             }
+
           })
-          .catch(failResponse => {
-            this.$router.replace({path: '/err'})
+          .catch(err => {
+            this.$router.push({path: '/err'})
           })
       }
     }
