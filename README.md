@@ -1,7 +1,7 @@
 # zZZ-Vue
 
 > Vue.js project
-> Vue 2.0
+> 基于Vue 2.0
 
 ## Build Setup
 
