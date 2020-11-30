@@ -11,6 +11,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'Login',
+      component: ()=>import('@/components/Login'),
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
       path: '/home',
       name: 'Home',
       component: ()=>Home,
@@ -25,14 +33,6 @@ export default new Router({
           }
         }
       ]
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: ()=>import('@/components/Login'),
-      meta: {
-        requireAuth: true
-      }
     }
   ]
 })

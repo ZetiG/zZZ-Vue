@@ -2,7 +2,7 @@
     <body id="poster">
       <el-form class="login-container" label-position="left"
              label-width="0px">
-        <h3 class="login_title">系统登录</h3>
+        <h3 class="login_title">zZZ系统登录</h3>
         <el-form-item>
             <el-input type="text" v-model="loginForm.username"
                       auto-complete="off" placeholder="账号"></el-input>
@@ -33,7 +33,6 @@
     },
     methods: {
       login () {
-        console.log(url)
         this.$axios({
           method: 'post',
           url: url+'/login',
@@ -43,14 +42,11 @@
           }
         }).then(res => {
 
-            this.$message({
-              type: 'success',
-              message: res.data.msg
-            })
-
             this.response=res
             if (res.data.code === 1) {
               this.$router.push({path: '/index'})
+            } else if (res.data.code !== 1){
+              this.$message.error(res.data.msg);
             }
 
           })
@@ -69,11 +65,14 @@
         height: 100%;
         width: 100%;
         background-size: cover;
-        position: fixed;
+        position: absolute;
     }
 
     body {
+        width: 100%;
+        height: 100%;
         margin: 0px;
+        padding: 0px;
     }
 
     .login-container {
